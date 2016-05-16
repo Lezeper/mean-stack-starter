@@ -30,6 +30,24 @@ mongoose.connect(config.database, function(err){
     console.log("DB connected.");
   }
 });
+<!-------------- test ------------------>
+var kittySchema = mongoose.Schema({
+    name: String
+});
+var Kitten = mongoose.model('Kitten', kittySchema);
+var silence = new Kitten({ name: 'Silence' });
+silence.save(function(err){
+  if(err)
+    console.log(err);
+});
+
+app.get('/test', (req, res) =>{
+  Kitten.find({}, function(err, docs) {
+    if (!err){
+        res.json(docs);
+    } else {throw err;}
+  });
+});
 
 // require('./server/routes')(app);
 var routes = require('./server/routes/index');

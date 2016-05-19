@@ -2,16 +2,23 @@
 <html ng-app="myApp">
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/font-awesome.min.css">
+    <link rel='stylesheet' href='stylesheets/style.css' />
   </head>
   <body ng-controller="myController as myCtrl">
     <h1><%= title %></h1>
     <h1>{{myCtrl.test}}</h1>
-    <h2>{{myCtrl.test2}}</h2>
+
+
+
+    <!--------------- Javascript ------------------------>
+    <script src="javascripts/jquery-1.12.3.min.js"></script>
+    <script src="javascripts/angular.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="javascripts/app.js"></script>
   </body>
   <footer>
 
   </footer>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script src="javascripts/app.js"></script>
 </html>

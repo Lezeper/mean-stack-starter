@@ -1,7 +1,7 @@
-angular.module('myApp', []).controller('myController', function($http){
+angular.module('myApp', []).controller('myController', function($scope, $http){
   this.test = "AnuglarJS Setup!";
 
-  $http.get('/test').then((res) => {
-    this.test2 = res.data;
-  });
+  // $http.get('/test').then(function(res){
+  //   this.test2 = res.data;
+  // });
 });

@@ -18,48 +18,27 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // connect to mongo db
-mongoose.connect(config.database, function(err){
-  if(err){
-    console.log(err);
-  }else{
-    console.log("DB connected.");
-  }
-});
-<!-------------- test ------------------>
-var kittySchema = mongoose.Schema({
-    name: String
-});
-var Kitten = mongoose.model('Kitten', kittySchema);
-var silence = new Kitten({ name: 'Silence' });
-silence.save(function(err){
-  if(err)
-    console.log(err);
+mongoose.connect(config.database, function (err) {
+    if (err) {
+        console.log(err);
+        process.exit();
+    } else {
+        console.log("DB connected.");
+    }
 });
 
-app.get('/test', (req, res) =>{
-  Kitten.find({}, function(err, docs) {
-    if (!err){
-        res.json(docs);
-    } else {throw err;}
-  });
-});
-
-// require('./server/routes')(app);
-var routes = require('./server/routes/index');
-var users = require('./server/routes/users');
-app.use('/', routes);
-app.use('/users', users);
+require('./server/routes')(app);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers
@@ -67,31 +46,23 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
-
-app.listen(config.port, function(err){
-  if(err){
-    console.log(err);
-  }else{
-    console.log("Listening to port " + config.port+"...");
-  }
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 module.exports = app;

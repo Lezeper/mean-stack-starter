@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var passport = require('passport');
 
 module.exports.createUser = function (req, res) {
   var user = new User();
@@ -14,14 +15,28 @@ module.exports.createUser = function (req, res) {
       return res.status(500).json(err)
     }
     return res.status(201).json({
-      "massage": "user created."
+      "message": "user created."
     });
   })
 
 };
 
-module.exports.findUser = function (req, res) {
-  
+module.exports.login = function (req, res) {
+  passport.authenticate('local', function (err, user, info) {
+    var token;
+    if(err){
+      return res.status(404).json(err);
+    }
+    if(user){
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        "token": token
+      })
+    }else{
+      res.status(401).json(info);
+    }
+  })(req, res);
 };
 
 module.exports.findAllUsers = function (req, res) {
@@ -33,15 +48,33 @@ module.exports.findAllUsers = function (req, res) {
   })
 };
 
+module.exports.findUserById = function (req, res) {
+  User.findById(req.params.id, function (err, user) {
+    if(err){
+      return res.status(500, err);
+    }
+    res.json(user);
+  })
+};
+
 module.exports.updateUser = function (req, res) {
   User.findById(req.body._id, function (err, user) {
+    if(!user){
+      return res.status(404).json({"message": "user not found"});
+    }
+
     user.name = req.body.name;
+    if(req.body.password){
+      user.setPassword(req.body.password);
+    }
 
     user.save(function (err) {
       if(err){
         return res.status(500).json(err);
       }
-      return res.json();
+      return res.json({
+        "message": "user updated!"
+      });
     })
 
   })

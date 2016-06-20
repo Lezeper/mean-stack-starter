@@ -1,11 +1,17 @@
 (function () {
   angular.module('app')
-    .controller('loginCtrl', ['meanData', '$scope', function (meanData, $scope) {
+    .controller('loginCtrl', ['$scope', 'authentication', function ($scope, authentication) {
 
-      
+      $scope.error = false;
 
       $scope.login = function () {
-        
+        authentication.login($scope.user)
+          .error(function () {
+            $scope.error = true;
+          })
+          .then(function () {
+            window.location.href = "/";
+          })
       };
 
     }])

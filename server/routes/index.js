@@ -1,8 +1,11 @@
 var express = require('express');
+var router = express.Router();
+var userCtrl = require('../controllers/user');
 
-module.exports = function (app) {
+router.get('/user', userCtrl.findAllUsers);
+router.get('/user:id', userCtrl.findUser);
+router.post('/user', userCtrl.createUser);
+router.put('/user:id', userCtrl.updateUser);
+router.delete('/user:id', userCtrl.deleteUser);
 
-    app.route('/').get(function (req, res) {
-        res.render('index', { title: 'Express Setup!' });
-    });
-};
+module.exports = router;

@@ -3,8 +3,8 @@
     function ($routeProvider, $locationProvider) {
       $routeProvider
         .when('/', {
-          templateUrl: '/home/home.view.html',
-          controller: "homeCtrl"
+          templateUrl: '/test/test.view.html',
+          controller: "testCtrl"
         })
         .when('/login', {
           templateUrl: "/auth/auth.view.html",

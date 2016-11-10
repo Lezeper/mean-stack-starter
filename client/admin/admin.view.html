@@ -1,0 +1,15 @@
+<div>
+	<div class="col-sm-3 list-group">
+		<a role="presentation" class="list-group-item"><p class="font-center-bold">Admin Panel</p></a>
+		<a ui-sref="admin.overviews" class="list-group-item" ng-class="{ active: isActive('/admin/overviews') }">Overviews</a>
+		<a ui-sref="admin.userm" class="list-group-item" ng-class="{ active: isActive('/admin/userm') }">Users</a>
+		<a ui-sref="admin.log" class="list-group-item" ng-class="{ active: isActive('/admin/log') }">Log</a>
+		<a href="#" onClick="window.location.href='/admin/module'" class="list-group-item" ng-class="{ active: isActive('/admin/module') }">Modules</a>
+		<a ui-sref="admin.mg" class="list-group-item" ng-class="{ active: isActive('/admin/mg') }">MG (Beta)</a>
+		<a ui-sref="admin.settings" class="list-group-item" ng-class="{ active: isActive('/admin/settings') }">Settings</a>
+	</div>
+
+	<div class="col-sm-9">
+		<ui-view></ui-view>
+	</div>	
+</div>

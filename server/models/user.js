@@ -13,6 +13,10 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  role: {
+    type: String,
+    required: true
+  },
   created: {
     type: Date,
     required: true
@@ -37,6 +41,7 @@ userSchema.methods.generateJwt = function () {
   
   return jwt.sign({
     _id: this._id,
+    name: this.name,
     exp: parseInt(expiry.getTime() / 1000)
   }, config.secretKey)
 };

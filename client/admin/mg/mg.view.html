@@ -1,0 +1,52 @@
+<div ng-init="mg.prop=[]">
+	<h2 class="font-center">Module Generator</h2>
+
+	<div class="form-group">
+		<label>Module Name</label>
+		<input type="text" class="form-control" ng-change="changeFUrl(mg)" ng-model="mg.moduleName"/>
+	</div>
+	<div class="form-group">
+		<label>Front End Routing URL</label>
+		<input type="text" class="form-control" ng-model="mg.frontUrl"/>
+	</div>
+	<!-- <div class="form-group">
+		<label>Generate</label>
+		<div class="checkbox">
+			<label><input type="checkbox" ng-model="mg.side.c" ng-init="mg.side.c=true"/>Client Side Files</label>
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox" ng-model="mg.side.s" ng-init="mg.side.s=true"/>Server Side Files</label>
+		</div>
+	</div> -->
+	<div class="form-group">
+		<div class="form-group well" ng-repeat="i in getNumber(number) track by $index">
+			<h4 class="font-center">Model Property {{$index+1}}</h4>
+			<div class="form-group">
+				<label>Property Name</label>
+				<input type="text" class="form-control" ng-model="mg.prop[$index].name"/>
+			</div>
+			<div class="form-group">
+				<label>Type</label>
+				<select class="form-control" ng-model="mg.prop[$index].type">
+					<option>String</option>
+					<option>Number</option>
+					<option>Date</option>
+					<!-- <option>Buffer</option> -->
+					<option>Boolean</option>
+					<!-- <option>Mixed</option> -->
+					<!-- <option>Objectid</option> -->
+					<option>Array</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label><input type="checkbox" ng-model="mg.prop[$index].required"/> required</label>
+				<label><input type="checkbox" ng-model="mg.prop[$index].unique"/> unique</label>
+			</div>
+		</div>
+	</div>
+	<button class="btn btn-warning" ng-click="addProp(1)">+</button>
+	<button class="btn btn-warning" ng-click="addProp(-1)">-</button>
+	<div class="form-group font-center">
+		<button class="btn btn-primary" onClick="this.disabled=true" ng-click="doGenerate(mg)">Generate!</button>
+	</div>
+</div>

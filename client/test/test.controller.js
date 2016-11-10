@@ -1,26 +1,64 @@
-(function () {
-  angular.module('app').controller('testCtrl', ['$scope', 'meanData', 'authentication',
-    function ($scope, meanData, authentication) {
+(function(){
+	app.controller("testCtrl", ["$scope", "meanData", 
+		function($scope, meanData){
 
-      $scope.isLogin = authentication.isLoggedIn();
+		$scope.getAllTest = function(){
+			return new Promise(function(resolve, reject){
+				meanData.getAllTest().then(function(res){
+					resolve(res.data);
+				}, function(err){
+					alert(err.data.errmsg);
+					reject();
+				});
+			})
+		}
 
-      if(authentication.currentUser()){
-        meanData.getUserById(authentication.currentUser()._id).success(function (data) {
-          $scope.currentUser = data;
-        });
-      }
+		$scope.getTestById = function(){
+			return new Promise(function(resolve, reject){
+				meanData.getTestById().then(function(res){
+					resolve(res.data);
+				}, function(err){
+					alert(err.data.errmsg);
+					reject();
+				});
+			})
+		}
 
-      $scope.logout = function () {
-        authentication.logout();
-        window.location.href = "/";
-      }
+		$scope.createTest = function(test){
+			return new Promise(function(resolve, reject){
+				meanData.createTest(test).then(function(res){
+					alert(res.data.message);
+					resolve(res.data.id);
+				}, function(err){
+					alert(err.data.errmsg);
+					reject(err.data.errmsg);
+				});
+			});
+		}
 
-      $scope.updateUser = function () {
-        meanData.updateUser($scope.currentUser).success(function (res) {
-          alert(res.message);
-          window.location.href = "/";
-        });
-      };
+		$scope.updateTest = function(test){
+			return new Promise(function(resolve, reject){
+				meanData.updateTest(test).then(function(res){
+					alert(res.data.message);
+					resolve();
+				}, function(err){
+					alert(err.data.errmsg);
+					reject();
+				});
+			});
+		}
 
-    }]);
+		$scope.deleteTestById = function(id){
+			return new Promise(function(resolve, reject){
+				meanData.deleteTestById(id).then(function(res){
+					alert(res.data.message);
+					resolve();
+				}, function(err){
+					alert(err.data.errmsg);
+					reject();
+				});
+			});
+		}
+
+	}]);
 })();

@@ -1,5 +1,6 @@
 (function () {
-  angular.module('app').service('authentication', ['$http', '$window', 'meanData', function ($http, $window, meanData) {
+  app.service('authentication', ['$http', '$window',
+       function ($http, $window) {
 
     var saveToken = function (token) {
       $window.localStorage['mean-token'] = token;
@@ -32,7 +33,8 @@
         payload = JSON.parse(payload);
         
         return {
-          _id : payload._id
+          _id : payload._id,
+          name: payload.name
         };
       }
     };
@@ -51,7 +53,8 @@
       login: login,
       isLoggedIn: isLoggedIn,
       currentUser: currentUser,
-      logout: logout
+      logout: logout,
+      getToken: getToken
     }
 
   }])

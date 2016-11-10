@@ -1,1 +1,21 @@
-<h3 class="text-center">This is Navigation</h3>
+<h3 class="text-center">{{settings.web_title}}</h3>
+<div style="float: right">
+	<div ng-show="!isLoggedIn">
+		<a href="/login"><i class="fa fa-user" aria-hidden="true"></i></a>
+	</div>
+	<div ng-show="isLoggedIn">
+		<i class="fa fa-user" aria-hidden="true"></i>
+		<label style="margin-right: 5px">{{currentUser.name}}</label>
+		<a href="" ng-click="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+	</div>
+</div>
+<div>
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" ng-class="{ active: isActive('/') }">
+			<a href="/">Home</a>
+		</li>
+		<li ng-show="isLoggedIn" role="presentation" ng-class="{ active: isActive('/admin/') }">
+			<a href="/admin/overviews/">Admin</a>
+		</li>
+	</ul>
+</div>

@@ -8,7 +8,7 @@ var passport = require('passport');
 
 var app = express();
 
-require('./server/models/db');
+require('./server/models');
 require('./server/config/passport');
 
 // uncomment after placing your favicon in /public

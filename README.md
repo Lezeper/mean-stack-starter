@@ -1,29 +1,41 @@
-# MEAN Stack Init
+# MEAN Stack Starter
 
 ### Introduction
+                This is a personal MEAN Stack Starter. It contains some
+                normal modules for a website, for example, **Login/Reg
+                ister** with encrypt password, **Log** module allows
+                admin to monitor visitors. **DB Backup** module allow to
+                backup MongoDB with One-Click. **Module Generator** 
+                module is for generating basic module with CRUD. 
 
 ### Usage
-                nodemon --config nodemon_d.json
-### Functions
-                1. Web Application Settings
-                2. Module Testing and Generator
-                3. One Click DB(MongoDB) Backup
+##### Before start
+                edit DB setting file in 'server/config/index.js'
+                using ***mongorestore*** to restore db in folder 'db'
+##### For Testing
+                > npm install
+                > nodemon --config nodemon_p.json
+##### For Developing
+                > npm install
+                > gulp
+                > nodemon --config nodemon_d.json
 
-### RESTful API
-##### User
-                GET    /api/user     - find all user
-                GET    /api/:id      - find specific user
-                POST   /api/login    - user login
-                POST   /api/user     - user register
-                PUT    /api/user     - update user
-                DELETE /api/user     - delete user
-                
-### Framework and Plugin			
-		Mongoose
-		Express
-		AngularJS
-		NodeJS
-		Jwt
+### Main Functions
+                1. Login, Logout, Register
+                2. Web Application Settings
+                3. Monitor visitor through Log module
+                4. One Click DB(MongoDB) Backup
+                5. Module Testing and Generator (Beta)
+
+### Main Framework and Plugin            
+                Mongoose
+                Express
+                AngularJS
+                NodeJS
+                Jwt
+                Passport
+                Nodemon
+                Gulp
 
 ### DB Model
 ##### Settings
@@ -44,9 +56,11 @@
                 created: Date, required
 ##### ModuleModel
                 module_name: String, required, unique
+                front_url, String,
                 required_p: Array [{prop_name: type}]
                 not_required_p: Array [{prop_name: type}]
-                created: Date, required
+                created: Date, required,
+                isEnable: Boolean, required
 
 ### Front End Routing
                 (* means protected)

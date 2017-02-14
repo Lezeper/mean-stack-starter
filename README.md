@@ -8,13 +8,9 @@
                 backup MongoDB with One-Click.
 
 ### Usage
-##### For Testing
-                > npm install
-                > nodemon --config nodemon_p.json
-##### For Developing
                 > npm install
                 > gulp
-                > nodemon --config nodemon_d.json
+                > nodemon
 
 ### Main Functions
                 1. Login, Logout, Register

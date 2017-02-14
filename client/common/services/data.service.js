@@ -64,31 +64,6 @@
       return $http.delete(serverUrl + '/settings', auth);
     }
 
-    /***** Module_Model *****/
-    var getAllModuleModel = function(){
-      return $http.get(serverUrl + '/mm', auth);
-    }
-
-    var createModuleModel = function(mm){
-      return $http.post(serverUrl + '/mm', mm, auth);
-    }
-
-    var updateModuleModel = function(mm){
-      return $http.put(serverUrl + '/mm', mm, auth);
-    }
-
-    var deleteModuleModelById = function(id, moduleName){
-      return $http.delete(serverUrl + '/mm?id=' + id + "&moduleName=" +
-                                                moduleName, auth);
-    }
-/*MG*//*** Test ***/
-var getAllTest = function () { return $http.get(serverUrl + '/test' ); };
-var getTestById = function (id) { return $http.get(serverUrl + '/test?id=' + id ); };
-var createTest = function (test) { return $http.post(serverUrl + '/test', test ); };
-var updateTest = function (test) { return $http.put(serverUrl + '/test' , test ); };
-var deleteTestById = function (id) { return $http.delete(serverUrl + '/test?id=' + id ); };
-/*** /Test ***/
-
     return {
       getAllUsers: getAllUsers,
       createUser: createUser,
@@ -105,12 +80,6 @@ var deleteTestById = function (id) { return $http.delete(serverUrl + '/test?id='
       getLogsByIp: getLogsByIp,
       getLogsByDate: getLogsByDate,
       deleteAllLogs: deleteAllLogs,
-
-      getAllModuleModel: getAllModuleModel,
-      createModuleModel: createModuleModel,
-      updateModuleModel: updateModuleModel,
-      deleteModuleModelById: deleteModuleModelById
-/*** TestR ***/, getAllTest: getAllTest,getTestById: getTestById,createTest: createTest,updateTest: updateTest,deleteTestById: deleteTestById/*** /TestR ***//*MGR*/
     }
   }])
 })();

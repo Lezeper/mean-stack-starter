@@ -40,8 +40,8 @@
     };
 
     var login = function (user) {
-      return $http.post('/api/login', user).success(function (data) {
-        saveToken(data.token);
+      return $http.post('/api/login', user).then(function (res) {
+        saveToken(res.data.token);
       })
     };
 

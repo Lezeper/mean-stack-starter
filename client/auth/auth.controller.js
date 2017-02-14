@@ -6,16 +6,15 @@
 
       $scope.login = function (user) {
         authentication.login(user)
-          .error(function () {
-            $scope.error = true;
-          })
           .then(function () {
             window.location.href = "/";
+          }, function(){
+            $scope.error = true;
           })
       };
 
       $scope.register = function (cUser) {
-        meanData.createUser(cUser).success(function (res) {
+        meanData.createUser(cUser).then(function (res) {
           alert(res.message);
           window.location.href = "/";
         })

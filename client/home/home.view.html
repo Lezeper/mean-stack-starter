@@ -1,8 +1,3 @@
-<!--
-	type: PAY(G), BUY(R), DEP(G), WIT(R)
-	comsumer: date, type, balance, accountID, notes
-	card: id, name, dueDate, closingDate, CL, balance, lastBalance, allow%
--->
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<strong>1/20/2017</strong>
@@ -20,19 +15,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><button class="btn-link" ng-click="">Freedom</button></td>
-						<td>BUY</td>
-						<td>$12</td>
-						<td>$300</td>
-						<td>$15</td>
-					</tr>
-					<tr>
-						<td><button class="btn-link" ng-click="">DC</button></td>
-						<td>BUY</td>
-						<td>$2</td>
-						<td>$100</td>
-						<td>$10</td>
+					<tr ng-repeat="activity in activities">
+						<td><button class="btn-link" ng-click="">{{activity.account}}</button></td>
+						<td>{{activity.type}}</td>
+						<td>${{activity.amount}}</td>
+						<td>${{activity.amount}}</td>
+						<td>$</td>
 					</tr>
 				</tbody>
 			</table>

@@ -1,6 +1,44 @@
-<div class="font-center">
-	<h2>This is home page</h2>
-	<a href="/login">Login Page</a>
-	<br>
-	<a href="/admin/">Admin page(need login)</a>
+<!--
+	type: PAY(G), BUY(R), DEP(G), WIT(R)
+	comsumer: date, type, balance, accountID, notes
+	card: id, name, dueDate, closingDate, CL, balance, lastBalance, allow%
+-->
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<strong>1/20/2017</strong>
+	</div>
+	<ul class="list-group">
+		<li class="list-group-item">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Account</th>
+						<th>Type</th>
+						<th>Amount</th>
+						<th>Balance</th>
+						<th>AB</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><button class="btn-link" ng-click="">Freedom</button></td>
+						<td>BUY</td>
+						<td>$12</td>
+						<td>$300</td>
+						<td>$15</td>
+					</tr>
+					<tr>
+						<td><button class="btn-link" ng-click="">DC</button></td>
+						<td>BUY</td>
+						<td>$2</td>
+						<td>$100</td>
+						<td>$10</td>
+					</tr>
+				</tbody>
+			</table>
+		</li>
+		<li class="list-group-item text-right">
+			<strong>Total Avaliable Balance: $1000</strong>
+		</li>
+	</ul>
 </div>
